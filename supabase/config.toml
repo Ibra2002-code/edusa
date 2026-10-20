@@ -1,0 +1,9 @@
+[functions.send-attendance-whatsapp]
+enabled = true
+verify_jwt = false
+entrypoint = "./functions/send-attendance-whatsapp/index.ts"
+
+[functions.invite-teacher]
+enabled = true
+verify_jwt = false
+entrypoint = "./functions/invite-teacher/index.ts"
