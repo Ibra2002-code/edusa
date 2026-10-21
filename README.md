@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # École Connect
 
 We are building the first production-quality UI for EDUSA, a school attendance and parent-notification platform.
@@ -384,3 +385,6 @@ cd <repository-name>
 npm i
 npm run dev
 
+=======
+# edusa
+>>>>>>> 1a140e75f5b13bf33c2ad1abce683f3f5030a053
