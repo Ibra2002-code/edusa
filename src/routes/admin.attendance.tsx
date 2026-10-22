@@ -388,14 +388,29 @@ function AttendancePage() {
     setRecognitionDraft(null);
 
     try {
-      const { data, error } = await supabaseClient.functions.invoke(
-        "recognize-attendance-sheet",
-        {
-          body: {
-            image: capturedImage,
-          },
-        },
-      );
+      
+const {
+  data: { session },
+} = await supabaseClient.auth.getSession();
+
+if (!session) {
+  throw new Error(
+    "Session Supabase absente. Veuillez vous reconnecter.",
+  );
+}
+
+const { data, error } = await supabaseClient.functions.invoke(
+  "recognize-attendance-sheet",
+  {
+    body: {
+      image: capturedImage,
+    },
+    headers: {
+      Authorization: `Bearer ${session.access_token}`,
+    },
+  },
+);
+
 
       if (error) {
         let message = error.message || "La reconnaissance a échoué.";
