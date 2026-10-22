@@ -416,8 +416,8 @@ function AttendancePage() {
         throw new Error("La réponse de reconnaissance est invalide.");
       }
 
-      if (typeof (data as Record<string, unknown>).error === "string") {
-        throw new Error((data as Record<string, string>).error);
+      if (typeof (data as Record<string, unknown>)["error"] === "string") {
+        throw new Error((data as Record<string, string>)["error"]);
       }
 
       setRecognitionDraft(data as Record<string, unknown>);
