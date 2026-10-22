@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
 GraduationCap,
 ShieldCheck,
@@ -48,8 +48,8 @@ function LoginPage() {
 const navigate = useNavigate();
 
 const [role, setRole] = useState<Role>("admin");
-const [email, setEmail] = useState("[direction@alhikma.edu](mailto:direction@alhikma.edu)");
-const [password, setPassword] = useState("demo1234");
+const [email, setEmail] = useState("direction@alhikma.edu");
+const [password, setPassword] = useState("");
 const [loading, setLoading] = useState(false);
 
 const handleLogin = async (e: React.FormEvent) => {
@@ -60,20 +60,12 @@ if (loading) return;
 
 setLoading(true);
 
-// ---------------------------------------------------------
-// MODE DÉMO
-// ---------------------------------------------------------
+// Never simulate a successful login when Supabase is not configured.
 if (!isSupabaseConfigured) {
-  toast.info("Mode Démo : Authentification simulée.");
-
-  setTimeout(() => {
-    navigate({
-      to: role === "admin" ? "/admin/dashboard" : "/teacher/dashboard",
-    });
-
-    setLoading(false);
-  }, 800);
-
+  toast.error(
+    "Authentification indisponible : configuration Supabase manquante. Contactez l'administrateur."
+  );
+  setLoading(false);
   return;
 }
 
